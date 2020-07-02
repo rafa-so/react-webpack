@@ -1,27 +1,24 @@
 'use strict'
 
-import App from './app'
-
 import React from 'react'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
+import App from './app'
 
-render(
+const renderApp = (NextApp) => {
+  render(
     <AppContainer>
-        <App />
-    </AppContainer>, 
+      <NextApp />
+    </AppContainer>,
     document.querySelector('[data-js="app"]')
-)
+  )
+}
+
+renderApp(App)
 
 if (module.hot) {
-    module.hot.accept('./app', () => {
-        const nextApp = request('./app').default
-
-        render(
-            <AppContainer>
-                <nextApp />
-            </AppContainer>, 
-            document.querySelector('[data-js="app"]')
-        )
-    })
+  module.hot.accept('./app', () => {
+    const NextApp = require('./app').default
+    renderApp(NextApp)
+  })
 }

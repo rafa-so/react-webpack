@@ -1,4 +1,4 @@
-'use strinct'
+'use strict'
 
 const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
